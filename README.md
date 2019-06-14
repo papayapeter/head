@@ -17,4 +17,4 @@ documentation: [https://zenogries.com/portfolio/iamnotyourtool/](https://zenogri
 * [a4988 stepper driver](https://www.pololu.com/product/1182)
 * [nema 17 stepper](https://www.ebay.de/itm/Nema-17-Stepper-Motor-Schrittmotor-26Ncm-12V-0-4A-4-wire-1m-cable-3D-Printer/392163408983?hash=item5b4ec2bc57:g:sAsAAOSwfB9b2Q9~)
 * carrier "sceleton" designed by me
-* custon circuit boards
+* custom circuit boards
