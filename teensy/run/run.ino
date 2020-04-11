@@ -72,7 +72,7 @@ void setup()
 
   AudioMemory(8);
 
-  // Pullup Wiederstände
+  // Audio - Lautstärke
   sgtl5000_1.enable();
   sgtl5000_1.volume(0.80);
   sgtl5000_1.lineOutLevel(27);
