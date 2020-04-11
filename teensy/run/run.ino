@@ -75,7 +75,7 @@ void setup()
   // Audio - Lautstärke
   sgtl5000_1.enable();
   sgtl5000_1.volume(0.80);
-  sgtl5000_1.lineOutLevel(27);
+  //sgtl5000_1.lineOutLevel(27);
 
   // SD-Karten - Kommunikation initiieren
   SPI.setMOSI(SDCARD_MOSI_PIN);
