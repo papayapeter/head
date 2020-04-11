@@ -45,7 +45,7 @@ const int L_Augenbraue_Min = -100, L_Augenbraue_Max = 10;        // --------- Ä
 const int R_Augenbraue_Min = 100, R_Augenbraue_Max = -10;         // --------- ÄNDERN
 const int Kiefer_Min = -35, Kiefer_Max = 15;                   // --------- ÄNDERN
 
-// Zeit-Variablen                                  
+// Zeit-Variablen
 int Counter = 0;
 int Interval = 1000 / FPS;
 unsigned long previousMillis = 0;
@@ -61,12 +61,12 @@ void setup()
 
   // Microstepping einschalten
   digitalWrite(Microstepping, HIGH);
-  
+
   // Beschleunigung hoch setzten
   L_Augenbraue.setAcceleration(5000);   // GLÄTTUNG --------- ÄNDERN
   R_Augenbraue.setAcceleration(5000);   // GLÄTTUNG --------- ÄNDERN
   Kiefer.setAcceleration(5000);         // GLÄTTUNG --------- ÄNDERN
-  
+
   // --------------------------- Audio -----------------------------
   Serial.begin(9600);
 
@@ -74,7 +74,8 @@ void setup()
 
   // Pullup Wiederstände
   sgtl5000_1.enable();
-  sgtl5000_1.volume(1.00);
+  sgtl5000_1.volume(0.80);
+  sgtl5000_1.lineOutLevel(27);
 
   // SD-Karten - Kommunikation initiieren
   SPI.setMOSI(SDCARD_MOSI_PIN);
@@ -150,13 +151,13 @@ void runAnimation()
   if (currentMillis - previousMillis >= Interval)
   {
     previousMillis = currentMillis;
-    
-    Serial.println("KieferS: " + String(map(Animation_Sequence[Counter][2], 0, 255, Kiefer_Min, Kiefer_Max)) + 
+
+    Serial.println("KieferS: " + String(map(Animation_Sequence[Counter][2], 0, 255, Kiefer_Min, Kiefer_Max)) +
                    "\tKieferI: " + String(Kiefer.currentPosition()) +
                    "\tFrame: " + String(Counter) +
                    "\tAudio: " + String(float(playWav1.positionMillis()) / 1000.0f) +
                    "\tSekunden: " + String(float(millis()) / 1000.0f));
-                       
+
     if (Counter < Animation_Length)
     {
       Counter++;
@@ -165,7 +166,7 @@ void runAnimation()
     {
       Counter = 0;
     }
-                   
+
     int L_Augenbraue_Target = map(Animation_Sequence[Counter][0], 0, 255, L_Augenbraue_Min, L_Augenbraue_Max);
     int R_Augenbraue_Target = map(Animation_Sequence[Counter][1], 0, 255, R_Augenbraue_Min, R_Augenbraue_Max);
     int Kiefer_Target = map(Animation_Sequence[Counter][2], 0, 255, Kiefer_Min, Kiefer_Max);
