@@ -10,9 +10,10 @@
 #include <SerialFlash.h>
 
 AudioPlaySdWav           playWav1;
+AudioAmplifier           amp1;
 AudioOutputI2S           audioOutput;
-AudioConnection          patchCord1(playWav1, 0, audioOutput, 0);
-AudioConnection          patchCord2(playWav1, 1, audioOutput, 1);
+AudioConnection          patchCord1(playWav1, 0, amp1, 0);
+AudioConnection          patchCord2(amp1, 0, audioOutput, 0);
 AudioControlSGTL5000     sgtl5000_1;
 
 // Pins für die SD-Karte
@@ -74,7 +75,8 @@ void setup()
 
   // Audio - Lautstärke
   sgtl5000_1.enable();
-  sgtl5000_1.volume(0.80);
+  amp1.gain(0.50);
+  //sgtl5000_1.volume(0.60);
   //sgtl5000_1.lineOutLevel(27);
 
   // SD-Karten - Kommunikation initiieren
