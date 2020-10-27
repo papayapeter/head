@@ -42,13 +42,13 @@ AccelStepper R_Augenbraue(1, R_Augenbraue_Step, R_Augenbraue_Dir);
 AccelStepper Kiefer(1, Kiefer_Step, Kiefer_Dir);
 
 // Bewegunsbereiche Festlegen
-const int L_Augenbraue_Min = -100, L_Augenbraue_Max = 10;        // --------- ÄNDERN
-const int R_Augenbraue_Min = 100, R_Augenbraue_Max = -10;         // --------- ÄNDERN
-const int Kiefer_Min = -35, Kiefer_Max = 15;                   // --------- ÄNDERN
+const int L_Augenbraue_Min = -110, L_Augenbraue_Max = 0;        // --------- ÄNDERN
+const int R_Augenbraue_Min = 110, R_Augenbraue_Max = 0;         // --------- ÄNDERN
+const int Kiefer_Min = -20, Kiefer_Max = 10;                   // --------- ÄNDERN
 
 // Zeit-Variablen
 int Counter = 0;
-int Interval = 1000 / FPS;
+unsigned int Interval = 1000 / FPS;
 unsigned long previousMillis = 0;
 
 // ----------------------------- SETUP -----------------------------
@@ -101,7 +101,7 @@ void loop()
   if (!digitalRead(Switch))
   {
     // Animation und Audio in Schleife Abspielen, wenn der Schalter an ist
-    if (!Play_Audio && getAnimationTime() == 1)
+    if (!Play_Audio && getAnimationTime() == 0)
     {
       Play_Audio = true;
       playWav1.play("ATMEN_01.WAV");
@@ -160,11 +160,8 @@ void runAnimation()
                    "\tAudio: " + String(float(playWav1.positionMillis()) / 1000.0f) +
                    "\tSekunden: " + String(float(millis()) / 1000.0f));
 
-    if (Counter < Animation_Length)
-    {
-      Counter++;
-    }
-    else
+    Counter++;
+    if (Counter >= Animation_Length)
     {
       Counter = 0;
     }
