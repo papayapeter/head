@@ -75,8 +75,8 @@ void setup()
 
   // Audio - Lautstärke
   sgtl5000_1.enable();
-  sgtl5000_1.volume(0.5); // Kopfhörer Lautstärke??
-  amp1.gain(0.50);
+  sgtl5000_1.volume(0.32); // Kopfhörer Lautstärke??
+  amp1.gain(0.32);
   //sgtl5000_1.lineOutLevel(27);
 
   // SD-Karten - Kommunikation initiieren
